@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "681171058604",
+    "project_id": "conectamovil-58dbf",
+    "storage_bucket": "conectamovil-58dbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681171058604:android:c8eb093890549770210409",
+        "android_client_info": {
+          "package_name": "com.example.conectamvil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681171058604-vkaaufsa3vb9lofi70a9bs7vcfnt8nbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs5x-ymNzGijjDVxtmE0Uc7Plc2DNBZdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681171058604-vkaaufsa3vb9lofi70a9bs7vcfnt8nbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
