@@ -29,7 +29,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         Contact contact = contactList.get(position);
         holder.textViewContactName.setText(contact.getName());
-        holder.textViewContactPhoneNumber.setText(contact.getPhoneNumber());
+        holder.textViewContactEmail.setText(contact.getEmail());
     }
 
     @Override
@@ -38,12 +38,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewContactName, textViewContactPhoneNumber;
+        TextView textViewContactName, textViewContactEmail; // Cambiar el nombre del TextView
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewContactName = itemView.findViewById(R.id.textViewContactName);
-            textViewContactPhoneNumber = itemView.findViewById(R.id.textViewContactPhoneNumber);
+            textViewContactEmail = itemView.findViewById(R.id.textViewContactEmail); // Cambiar al TextView del correo electrónico
         }
     }
 }

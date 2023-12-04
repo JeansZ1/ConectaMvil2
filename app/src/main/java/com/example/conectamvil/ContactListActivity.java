@@ -31,7 +31,6 @@ public class ContactListActivity extends AppCompatActivity {
     // Referencia a la base de datos de Firebase
     private DatabaseReference databaseReference;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,18 +47,7 @@ public class ContactListActivity extends AppCompatActivity {
 
         // Leer los contactos desde Firebase Realtime Database
         readContactsFromFirebase();
-
-        Button buttonAddContact = findViewById(R.id.buttonAddContact);
-        buttonAddContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Abre la actividad para agregar nuevos contactos
-                Intent intent = new Intent(ContactListActivity.this, AddContactActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-
 
     private void readContactsFromFirebase() {
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -75,6 +63,7 @@ public class ContactListActivity extends AppCompatActivity {
                 contactsAdapter.notifyDataSetChanged();
             }
 
+            @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Manejar errores de lectura desde Firebase
                 Log.e("Firebase", "Error al leer los contactos: " + databaseError.getMessage());
