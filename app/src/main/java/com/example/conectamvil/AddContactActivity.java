@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conectamvil.Contact;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,6 +35,15 @@ public class AddContactActivity extends AppCompatActivity {
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
+        Button buttonBackToList = findViewById(R.id.buttonBackToList);
+        buttonBackToList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Agregar aquí la lógica para volver a la lista de contactos
+                startActivity(new Intent(AddContactActivity.this, ContactListActivity.class));
+            }
+        });
+
 
         // Botón para registrar un usuario
         Button buttonRegisterUser = findViewById(R.id.buttonRegisterUser);
@@ -61,7 +71,6 @@ public class AddContactActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        // Verificar que los campos no estén vacíos
         if (!TextUtils.isEmpty(firstName)
                 && !TextUtils.isEmpty(lastName)
                 && !TextUtils.isEmpty(email)
@@ -80,18 +89,10 @@ public class AddContactActivity extends AppCompatActivity {
                                 saveContactToFirebase();
                             } else {
                                 // Error en el registro
-                                Toast.makeText(AddContactActivity.this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddContactActivity.this, "Error al registrar usuario: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Mostrar mensaje de error específico o registrar la excepción en el log
-                            Toast.makeText(AddContactActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                     });
-
         } else {
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
         }

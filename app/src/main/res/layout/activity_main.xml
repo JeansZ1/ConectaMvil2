@@ -14,14 +14,16 @@
         android:id="@+id/editTextEmailLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo electrónico"/>
+        android:hint="Correo electrónico"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editTextPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Contraseña"
         android:inputType="textPassword"
-        android:hint="Contraseña"/>
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/buttonLogin"

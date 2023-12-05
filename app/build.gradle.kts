@@ -35,7 +35,14 @@ android {
 
 dependencies {
 
+    //noinspection GradleCompatible,GradleCompatible
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.android.support:support-v4:28.0.0")
+    //noinspection GradleCompatible
+    implementation("com.android.support:localbroadcastmanger:28.0.0")
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
+    implementation("org.eclipse.paho:org.eclipse.paho.android.service:1.1.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.3.0")
