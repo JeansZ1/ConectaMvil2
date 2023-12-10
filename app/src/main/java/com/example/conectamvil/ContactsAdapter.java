@@ -4,18 +4,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactViewHolder> {
 
-    private List<Contact> contactList;
+    private List<Contact> contactsList;
 
-    public ContactsAdapter(List<Contact> contactList) {
-        this.contactList = contactList;
+    public ContactsAdapter(List<Contact> contactsList) {
+        this.contactsList = contactsList;
     }
 
     @NonNull
@@ -27,23 +25,23 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
-        Contact contact = contactList.get(position);
-        holder.textViewContactName.setText(contact.getName());
+        Contact contact = contactsList.get(position);
+        holder.textViewContactName.setText(contact.getUsername());
         holder.textViewContactEmail.setText(contact.getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return contactList.size();
+        return contactsList.size();
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewContactName, textViewContactEmail; // Cambiar el nombre del TextView
+        TextView textViewContactName, textViewContactEmail;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewContactName = itemView.findViewById(R.id.textViewContactName);
-            textViewContactEmail = itemView.findViewById(R.id.textViewContactEmail); // Cambiar al TextView del correo electrónico
+            textViewContactEmail = itemView.findViewById(R.id.textViewContactEmail);
         }
     }
 }

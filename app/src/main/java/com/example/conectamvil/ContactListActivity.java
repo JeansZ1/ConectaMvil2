@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +29,7 @@ public class ContactListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewContacts;
     private ContactsAdapter contactsAdapter;
-    private List<Contact> contactList = new ArrayList<>();
+    private List<Contact> contactsList = new ArrayList<>();
 
     // Referencia a la base de datos de Firebase
     private DatabaseReference databaseReference;
@@ -39,10 +38,11 @@ public class ContactListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
-        Button buttonAddContact = findViewById(R.id.buttonAddContact);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button buttonAddContact = findViewById(R.id.buttonAddContact);
         buttonAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,15 +54,16 @@ public class ContactListActivity extends AppCompatActivity {
         recyclerViewContacts = findViewById(R.id.recyclerViewContacts);
         recyclerViewContacts.setLayoutManager(new LinearLayoutManager(this));
 
-        contactsAdapter = new ContactsAdapter(contactList);
+        contactsAdapter = new ContactsAdapter(contactsList);
         recyclerViewContacts.setAdapter(contactsAdapter);
 
         // Inicializar la referencia a la base de datos de Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("contacts");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Contacts");
 
         // Leer los contactos desde Firebase Realtime Database
         readContactsFromFirebase();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_contact_list, menu);
@@ -85,6 +86,7 @@ public class ContactListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void showUserProfile() {
         // Implementa aquí la lógica para mostrar la vista de usuario y permitir subir una foto
         // Por ejemplo, abre una nueva actividad con la interfaz de usuario del perfil y la opción de subir una foto
@@ -103,16 +105,20 @@ public class ContactListActivity extends AppCompatActivity {
         finish(); // Termina esta actividad para que el usuario no pueda volver atrás después de cerrar sesión
     }
 
+    // ... (imports y otros métodos de la actividad)
 
     private void readContactsFromFirebase() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                contactList.clear();
+                contactsList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Contact contact = snapshot.getValue(Contact.class);
-                    contactList.add(contact);
+                    String username = snapshot.child("username").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+
+                    Contact contact = new Contact(username, email);
+                    contactsList.add(contact);
                 }
 
                 contactsAdapter.notifyDataSetChanged();

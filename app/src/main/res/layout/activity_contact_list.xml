@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_contact_list.xml -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -9,27 +8,24 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:background="?attr/colorPrimary"/>
 
-    <!-- RecyclerView para mostrar la lista de contactos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContacts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonAddContact"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="68dp" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/buttonAddContact"
+        android:layout_below="@id/toolbar"
+        android:paddingTop="8dp"
+        android:paddingBottom="64dp"/>
 
     <Button
         android:id="@+id/buttonAddContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Contacto"
+        android:text="Agregar contacto"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"/>
 
 </RelativeLayout>

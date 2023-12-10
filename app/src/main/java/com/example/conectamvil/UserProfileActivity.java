@@ -48,15 +48,15 @@ public class UserProfileActivity extends AppCompatActivity {
         }
 
         // Obtener los datos del usuario desde Firebase Realtime Database
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId);
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(currentUserId);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Verificar si los datos existen en la base de datos
                 if (dataSnapshot.exists()) {
                     // Obtener los valores de nombre de usuario y correo electrónico
-                    String username = dataSnapshot.child("username").getValue(String.class);
-                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String username = dataSnapshot.child("Nombre de Usuario").getValue(String.class);
+                    String email = dataSnapshot.child("Correo").getValue(String.class);
 
                     // Mostrar los valores en los EditText
                     editTextUserName.setText(username);
@@ -93,9 +93,9 @@ public class UserProfileActivity extends AppCompatActivity {
                 String editedUsername = editTextUserName.getText().toString().trim();
                 String editedEmail = editTextEmail.getText().toString().trim();
 
-                DatabaseReference currentUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId);
-                currentUserRef.child("username").setValue(editedUsername);
-                currentUserRef.child("email").setValue(editedEmail);
+                DatabaseReference currentUserRef = FirebaseDatabase.getInstance().getReference().child("Usuario").child(currentUserId);
+                currentUserRef.child("Nombre de Usuario").setValue(editedUsername);
+                currentUserRef.child("Correo").setValue(editedEmail);
 
                 // Ocultar el botón de Guardar y mostrar el botón de Editar
                 buttonSave.setVisibility(View.GONE);
@@ -133,7 +133,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void updateProfileImage(Uri imageUri) {
-        DatabaseReference currentUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId);
+        DatabaseReference currentUserRef = FirebaseDatabase.getInstance().getReference().child("Usuario").child(currentUserId);
         currentUserRef.child("profileImageUrl").setValue(imageUri.toString());
 
         // Muestra la imagen en el ImageView usando Glide o tu biblioteca de imágenes preferida

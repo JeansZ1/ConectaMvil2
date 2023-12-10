@@ -1,29 +1,24 @@
 package com.example.conectamvil;
 
 public class Contact {
-    private String name;
+    private String username;
     private String email;
 
-    public Contact() {
-        // Constructor vacío requerido por Firebase
-    }
-
-    public Contact(String name, String email) {
-        this.name = name;
+    // Constructor
+    public Contact(String username, String email) {
+        this.username = username;
         this.email = email;
     }
 
-    // Getters y setters para cada campo
-    // Name
-    public String getName() {
-        return name;
+    // Métodos getter y setter para el nombre de usuario y el email
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    // Email
     public String getEmail() {
         return email;
     }
